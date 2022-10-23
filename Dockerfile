@@ -11,7 +11,7 @@ FROM nginx:alpine
 ENV JPEG_STREAM_HOST localhost
 ENV JPEG_STREAM_PORT 8080
 
-COPY --chown=101:101 server/nginx-site.conf /etc/nginx/conf.d/default.conf
+COPY --from=build --chown=101:101 /build/server/nginx-site.conf /etc/nginx/conf.d/default.conf
 COPY --from=build --chown=101:101 /build/dist /usr/share/nginx/html
-COPY --chown=101:101 server/config.json /usr/share/nginx/html/config.json
+COPY --from=build --chown=101:101 /build/server/config.json /usr/share/nginx/html/config.json
 EXPOSE 80
