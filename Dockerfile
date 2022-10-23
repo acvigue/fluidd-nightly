@@ -3,7 +3,7 @@ ARG FRONTEND_ZIP_URL=https://github.com/fluidd-core/fluidd/archive/refs/heads/de
 WORKDIR /build
 ADD ${FRONTEND_ZIP_URL} /tmp/build.zip
 RUN unzip /tmp/build.zip -d /build
-RUN npm ci --no-optional
+RUN npm ci --omit=optional
 RUN npm run build
 
 FROM nginx:alpine
