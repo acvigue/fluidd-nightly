@@ -4,7 +4,7 @@ WORKDIR /
 ADD ${FRONTEND_ZIP_URL} /tmp/build.zip
 RUN unzip /tmp/build.zip -d /
 WORKDIR /fluidd-develop
-RUN npm install
+RUN npm ci --omit optional
 RUN npm run build
 
 FROM nginx:alpine
